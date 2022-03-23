@@ -36,17 +36,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         title: 'OnBoarding 3 title',
         body: 'OnBoarding 3 body'),
   ];
-  void submit() {
-    CacheHelper.saveData(
-      key: 'OnBoarding',
-      value: true,
-    ).then((value)
-    {
-      if (value) {
-        navigateAndFinish(
-          context,
-          ShopLoginScreen(),
-        );
+  void submit(){
+    CacheHelper.saveData(key: 'onBoarding', value: true).then((value) {
+      if(value){
+        navigateAndFinish(context, ShopLoginScreen());
       }
     });
   }
@@ -101,7 +94,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 Spacer(),
                 FloatingActionButton(
                   onPressed: (){
-                    setState((){ isLast? submit() :
+                    setState((){
+                      if(isLast){
+                        submit();
+                      }
                       boarederController.nextPage(
                           duration: (
                               Duration(milliseconds: 750
